@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,8 +27,17 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
-
+        $validatedUser = $request->validate([
+            'first_name' => ['required', 'string', 'max:255'],
+            'middle_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'contact_number' => ['required', 'numeric', 'digits:11','unique:users,contact_number,'.$request->user()->id],
+            'email' => ['sometimes', 'required', 'string', 'email', 'max:255', 'unique:users,email,'.$request->user()->id],
+            'house_no' => ['required', 'numeric'],
+            'sitio' => ['required', 'string', 'in:Batisan,Bayside,Bukana,Ilaya,Manggahan,Silangan'],
+        ]);
+        $request->user()->fill($validatedUser);
+        
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
         }
