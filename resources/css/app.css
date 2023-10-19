@@ -5,10 +5,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Epilogue&display=swap');
 
 :root {
-    --primary: #FF8000;
+    --primary: #F55601;
     --white: #fff;
-    --light-gray:lightgray;
-    --hover:#FF962D;
+    --light-gray: lightgray;
+    --hover: #FF962D;
 }
 
 * {
@@ -44,20 +44,26 @@ nav {
     background-color: var(--primary);
 }
 
+.navbar--active {
+    color: var(--light-gray);
+    text-decoration: underline;
+    text-underline-offset: 2rem;
+}
+
 nav li {
     color: var(--white);
 }
 
 nav li a:hover {
-   cursor: pointer;
-   color: var(--light-gray);
+    cursor: pointer;
+    color: var(--light-gray);
 }
 
-.nav-item-logo{
+.nav-item-logo {
     width: 20%;
 }
 
-.nav-item-letters{
+.nav-item-letters {
     width: 30%;
 }
 
@@ -72,20 +78,19 @@ nav li a:hover {
     margin-top: 70px;
 }
 
-.input-group{
+.input-group {
     border: 1px solid var(--light-gray);
     padding: 1rem;
 }
 
-.primary-btn{
+.primary-btn {
     background-color: var(--primary);
     color: var(--white);
     padding: .5rem;
     border-radius: 5px;
 }
 
-.primary-btn:hover{
+.primary-btn:hover {
     background-color: var(--hover);
     transition: ease-in-out 150ms;
 }
-
